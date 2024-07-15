@@ -118,6 +118,7 @@ onMounted(() => {
     canvas: canvas.value,
   });
   renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.render(scene, camera);
 

@@ -92,7 +92,9 @@ const getmodel = async () => {
   const { scene: zombie, animations } = await gltfloader.loadAsync(
     "./model/zombie.glb"
   );
-
+  zombie.traverse((item) => {
+    item.castShadow = true;
+  });
   zombie.scale.set(0.008, 0.008, 0.008);
   zombie.position.set(-3, 0, 1.5);
   zombie.rotation.y = Math.PI / 2;
