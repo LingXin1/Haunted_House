@@ -152,6 +152,10 @@ for (const key in grassflower) {
   grassflower[key].colorSpace = THREE.SRGBColorSpace;
 }
 
+// * 加载雪花纹理
+const snowtexture = {};
+snowtexture.map = textureloader.load("./img/snow/snow.png");
+
 // ! 整体导出纹理
 const alltextures = {
   grasstexture,
@@ -159,6 +163,7 @@ const alltextures = {
   rooftexture,
   doortexture,
   grassflower,
+  snowtexture,
 };
 
 export default alltextures;

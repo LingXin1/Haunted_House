@@ -62,6 +62,29 @@ const setgrassflowergeometry = (radius) => {
   return new THREE.SphereGeometry(radius, 64, 128);
 };
 
+// * 创建下雪粒子
+const num = 5000;
+const snowarr = [];
+for (let i = 0; i < num * 3; i++) {
+  const index = i * 3;
+  snowarr[index] = (Math.random() - 0.5) * 10;
+  snowarr[index + 1] = 0.005;
+  snowarr[index + 2] = (Math.random() - 0.5) * 10;
+}
+
+const snowgeometry = new THREE.BufferGeometry();
+snowgeometry.setAttribute(
+  "position",
+  new THREE.Float32BufferAttribute(snowarr, 3)
+);
+const snowmaterial = new THREE.PointsMaterial({
+  size: 10,
+  sizeAttenuation: false,
+  transparent: true,
+  alphaTest: 0.1,
+  ...alltextures.snowtexture,
+});
+
 // todo 创建草地
 const grass = new THREE.Mesh(grassgeometry, grassmaterial);
 grass.name = "草地";
@@ -147,12 +170,16 @@ grassflower_3.castShadow = true;
 grassflower_3.position.set(0.2, 0.08, 0.6);
 allgrassflower.push(grassflower_1, grassflower_2, grassflower_3);
 
+// todo 创建雪花飘落
+const snow = new THREE.Points(snowgeometry, snowmaterial);
+
 // ! 整体导出
 const allmesh = {
   grass,
   wall,
   roof,
   door,
+  snow,
 };
 
-export { allmesh, models, allgrassflower };
+export { allmesh, models, allgrassflower, snow };

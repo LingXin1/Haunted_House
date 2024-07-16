@@ -5,7 +5,7 @@ import * as THREE from "three";
 import GUI from "lil-gui";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
-import { allmesh, models, allgrassflower } from "./hooks/mesh";
+import { allmesh, models, allgrassflower, snow } from "./hooks/mesh";
 import alllight from "./hooks/light";
 
 // ! 定义变量
@@ -47,6 +47,8 @@ scene.add(models.zombies.model);
 allgrassflower.forEach((item) => {
   scene.add(item);
 });
+
+scene.add(snow);
 
 // todo 模型动画
 const mixer = new THREE.AnimationMixer(models.zombies.model);
